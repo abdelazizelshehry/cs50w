@@ -1,0 +1,28 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>All Catagory</h1>
+    <br></br>
+    <a href="{% url 'encyclopedia:addcatagory' %}"><button style="background-color: rgb(112, 112, 231); font-size: 27; font-weight: 500; padding: 1%; margin-left: 7%;">Add Catagory</button></a>
+    <br></br>
+
+    {% for object in objects %}
+        <div class="row border m-4">
+            <div class="col-sm-3"><a href="{% url 'encyclopedia:topics' name=object.name %}">{{ object.name }}</a></div>
+            <div class="col-sm-3"><a href="{% url 'encyclopedia:edit' %}">Edit</a></div>
+            <div class="col-sm-3"><a href="{% url 'encyclopedia:delete'}">Delete</a></div>
+        </div>
+    {% endfor %}
+    </a>
+    <!--<ul>
+        
+        {% for entry in entries %}
+            <li><a href="{% url 'encyclopedia:reqpage' name=entry %}">{{ entry }}</a></li>
+        {% endfor %}
+    </ul>-->
+    
+{% endblock %}

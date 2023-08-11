@@ -1,0 +1,27 @@
+{% extends "encyclopedia/layout.html" %}
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+<p>Use the form below to create a new Qwikipedia Page.</p>
+<p>Please note that wikipedia uses <a href="https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax">Github Markdown</a> to style its pages, which is converted to HTML when entries are requested by a user.</p>
+    <h2>Add a new entry to encyclopedia</h2>
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color: rgb(174, 26, 26);font-size:24px;font-family:sans-serif;">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <br>
+    <form action="{% url 'encyclopedia:create' %}" method="post">
+        {% csrf_token %}
+        <div>{{ form.title }}</div>
+        <br>
+        <div>{{form.content}}</div>
+        
+        <br>
+        <input type="submit" value="save" class="btn btn-primary">
+    </form>
+{% endblock %}
