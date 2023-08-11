@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Google Search 
+        </title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        
+        <div id="search" style="display: block;">
+        <footer >
+        <button id="butImg" class="butimg" onclick="imgfunction()">Images Search</button>
+        <button id="butadv" class="butadv" onclick="adv()">Advanced Search</button>
+        </footer>
+        <h1>
+        <img src="file:///H:\Web\New folder\googlelogo_color_272x92dp.png" alt="GoogleSearch" width="250px" height="150">
+        </h1>
+        <br>
+        <form action="https://www.google.com/search" id="formreg">
+            <input id="regular" type="text" name="q" placeholder="Search..">
+            <br><br/>
+            <input type="submit" value="Google Search">
+            <input type="submit" name="btnI" value="I'm Feeling Lucky">
+        </div>
+
+
+
+        <div style="display: none;" id="image">
+        <button class="reqsearch" id="reqsearch" onclick="search()">Regular Search</button>
+        <button id="butadv" class="butadv" onclick="adv()">Advanced Search</button>
+        <h1>
+        <img src="file:///H:\Web\New folder\googlelogo_color_272x92dp.png" alt="GoogleSearch" width="250px" height="150" >
+        </h1>
+        <p class="text">Images</p>
+        </form>
+        <form action="https://www.google.com/search" id="formreg">
+            <input hidden type="text" name="tbm" value="isch" id="inp"> 
+            <input id="regular" type="text" name="q" placeholder="Search.." id="inp2">
+            <br><br/>
+            <input type="submit" value="Google Search">
+        </form>
+        </div>
+
+
+
+
+        <div id="adv" style="display: none;">
+        <!--<button id="butImg" class="butimg" onclick="imgfunction()">Images Search</button>-->
+        <!--<button class="reqsearch" id="reqsearch" onclick="search()">Regular Search</button>-->
+        <div class="upper">
+            <img src="file:///H:\Web\New folder\googlelogo_color_272x92dp.png" width="100" height="30">
+        <br><br/>
+        <p class="p">Advanced Search</p>
+        <div class="notch"></div>
+        </div>
+        <br><br/>
+        <span style="font-size:15px;font-family:sans-serif;margin-right:45%;margin-left: 5%;">Find Pages with...</span>
+        <span style="font-weight:bold;color:rgb(171, 169, 165);font-family:sans-serif;margin-left: 2.4%;">To do this in the search box</span>
+        <br><br/>
+        <div>
+        <form action="https://www.google.com/search" >
+            
+            <label id="left-side">all these words:</span>
+            <input id="inpadv0" type="text" name="as_q" placeholder="find all these words..">
+            <span id="right-side">Type the important words: tri-colour rat terrier:</span>
+            <br><br/>
+            <span id="left-side">this exact word or phrase:</span>
+            <input id="inpadv1" type="text" name="as_epq" placeholder="his exact word or phrase.">
+            <span id="right-side">Put exact words in quotes: "rat terrier"</span>
+            <br><br/>
+            <span id="left-side">any of these words:</span>
+            <input id="inpadv2" type="text" name="as_oq" placeholder="any of these words..">
+            <span id="right-side">Type OR between all the words you want: miniature OR standard</span>
+            <br><br/>
+            <span id="left-side">none of these words:</span>
+            <input id="inpadv3" type="text" name="as_eq" placeholder="none of these words:..">
+            <span id="right-side">Put a minus sign just before words that you don't want: -rodent, -"Jack Russell"</span>
+            <br><br/>
+            <input id="advancedbutton"type="submit" value="Google Search">
+        </form>
+        </div>
+        </div>
+
+
+        
+        <script>
+            let divsearvh = document.getElementById("search");
+            let divimg = document.getElementById("image");
+            let divadv = document.getElementById("adv");
+            let element = document.getElementById("inp").innerHTML;
+            let valueInp2 = document.getElementById("Inp").value;
+            // let value = document.getElementById("inp").value;
+           // let name = document.getElementById("inp").name;
+            
+            function imgfunction() {
+                if (divimg.style.display === "none" && (divadv.style.display === "block" || divsearvh.style.display ==="block")) {
+                    divimg.style.display = "block";
+                    divsearvh.style.display = "none";
+                    divadv.style.display = "none";
+                }
+            }
+            function search() {
+                if (divsearvh.style.display === "none" && (divadv.style.display === "block" || divimg.style.display ==="block")) {
+                        divsearvh.style.display = "block";
+                        divimg.style.display = "none";
+                        divadv.style.display = "none";
+                        
+                    }
+            }
+            function adv() {
+                if (divadv.style.display === "none" && (divimg.style.display === "block" || divsearvh.style.display ==="block")) {
+                        divadv.style.display = "block";
+                        divimg.style.display = "none";
+                        divsearvh.style.display = "none";
+                    }
+            } 
+            /*  document.addEventListener('DOMContentLoaded', () => {
+                if (document.getElementById("butImg").onclick)  {
+                    if (divadv.style.display === "none") {
+                    divimg.style.display = "block";
+                    divsearvh.style.display = "none";
+                    divadv.style.display = "none";
+                }
+                }
+                else if (document.getElementById("reqsearch").onclick) {
+                    if (divsearvh.style.display === "none") {
+                        divimg.style.display = "none";
+                        divadv.style.display = "none";
+                        divsearvh.style.display = "block";
+                    }
+                }
+                else if (document.getElementById("butadv").onclick) {
+                    if (divadv.style.display === "none") {
+                        divadv.style.display = "block";
+                        divimg.style.display = "none";
+                        divsearvh.style.display = "none";
+                    }
+                }
+                
+            }) */
+            //function myfunction() {
+                //    if (divimg.style.display === "none") {
+                  //      divimg.style.display = "block";
+                    //    divadv.style.display = "none";
+                      //  divsearvh.style.display = "none";
+                  //  }
+              //  }
+        </script>
+    </body>
+</html>
