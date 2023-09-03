@@ -1,0 +1,93 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+
+    {{current.title}}
+
+{% endblock %}
+
+{% block body %}
+
+    <h1>Listing:{{current.title}}</h1>
+    <br>
+    {% if owner %}
+        <div>
+            <a href="{% url 'auctions:closebid' id=current.id %}"><button class="btn btn-primary" style="background-color: rgb(226, 226, 58); color: rgb(40, 40, 38);">Close</button></a>
+        </div>
+    {% endif %} 
+    <br></br>
+        {% if added %}
+            <div>
+                <a href="{% url 'auctions:unwatch' id=current.id %}"><button class="btn btn-primary" style="background-color: rgb(234, 13, 13); color: rgb(248, 248, 243);">Remove</button></a>
+            </div>
+        {% else %}
+        <form method="post" enctype="multipart/form-data" action="{% url 'auctions:watch' id=current.id %}">
+            {% csrf_token %}
+            <div>
+                <button class="btn btn-primary" type="submit">watchlist</button>
+            </div>
+        </form>
+        {% endif %}
+    <br>
+    <img src="{{current.imageurl}}" alt="{{current.title}}" style="width: 400px; height: 300px;">
+    <br><br/>
+    <div><span>{{current.discription}}</span></div>
+    <br>
+    <div>
+        <span style="font-size: 30px; font-weight: bold;">${{current.starting_bid}}</span>
+    </div>
+    <br>
+    <div>
+        <form method="post" enctype="multipart/form-data" action="{% url 'auctions:bid' id=current.id %}">
+            <label style="font-weight: bold; font-size: large;">Put a Bid : </label><br>
+            {% csrf_token %}
+            {% for field in bidform %}
+                {{ field }}
+            {% endfor %}
+            <input type="submit" class="btn btn-primary" value="Bid">
+        </form>
+    </div>
+    <br>
+    {% if comments %}
+    <h3>Comments:</h3>
+    <div class="container">
+        {% for c in comments %}
+        <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{c.user}}</h5>
+                <p class="card-text">{{c.comment}}</p>
+                <p class="card-text"><small class="text-muted">{{c.time}} UTC</small></p>
+            </div>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+        <form method="post" enctype="multipart/form-data" action="{% url 'auctions:comment' id=current.id %}">
+            <label style="font-weight: bold; font-size: large;">Write comment : </label><br>
+            {% csrf_token %}
+            {% for field in commentform %}
+                {{ field }}
+            {% endfor %}
+            <br>
+            <input type="submit" class="btn btn-primary" value="Comment" style="margin-left: 90%;">
+        </form>
+    </div>
+    <br>
+    <div>
+        <div>
+            <h3>Details</h3>
+        </div>
+        <div style="font-weight: 400; font-size: 20px; ">
+            <ul>
+                <li>
+                    Listedby : {{current.user}}
+                </li>
+                <li>Catagory : {{current.catagory}}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

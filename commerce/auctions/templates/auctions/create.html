@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    Create New Listing
+{% endblock %}
+
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+    <div>{{ message }}</div>
+    {% endfor %}
+{% endif %}
+    <form action="{% url 'auctions:insert' %}" method="post" enctype="multipart/form-data">
+        <h1>{{ message1 }}</h1>
+        {% csrf_token %}
+        
+        {% for field in form %}
+        {{ field }}
+
+        <br>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary" style="margin-left: 90%;">create</button>
+    </form>
+
+{% endblock %}
